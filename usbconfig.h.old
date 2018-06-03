@@ -1,0 +1,13 @@
+#define USB_CFG_IOPORTNAME      B
+#define USB_CFG_DMINUS_BIT      1
+#define USB_CFG_DPLUS_BIT       2
+#define USB_CFG_CLOCK_KHZ       (F_CPU/1000)
+#define USB_CFG_HAVE_MEASURE_FRAME_LENGTH   1
+
+// The following needs to be uncommented
+#define USB_RESET_HOOK(resetStarts)     if(!resetStarts){hadUsbReset();}
+
+// Add the following after USB_RESET_HOOK
+#ifndef __ASSEMBLER__
+extern void hadUsbReset(void); // define the function for usbdrv.c
+#endif
